@@ -58,15 +58,20 @@ def step_impl(context):
     print('Passo 4 - Clicou no botão Find Flights')
     time.sleep(1)
 
-@then(u'sou direcionado para a página de seleção de vôos')
-def step_impl(context):
+@then(u'sou direcionado para a página de seleção de vôos de "{origem}" para "{destino}"')
+def step_impl(context, origem, destino):
+    print()
     # 3 Principais motivos para um scritp de automação não funcionar:
     # - Seletores ou Identificadores
     # - Sincronismo
     # - Programação Exótica
 
-    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text == 'Flights from São Paolo to Rome: '
-    # assert context.driver.find_element(By.TAG_NAME, 'h3').text() == 'Flights from São Paolo to Rome: '
+    # assert context.driver.find_element(By.TAG_NAME, 'h3').text == 'Flights from São Paolo to Rome: '
+
+    re = f'Flights from {origem} to {destino}:'
+    print('texto é ' + context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h2[1]').text)
+    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h2[1]').text == re
+
     print('Passo 5 - Direcionou para a página de seleção de vôos')
     time.sleep(1)
 
@@ -78,9 +83,9 @@ def step_impl(context):
 
 @then(u'sou direcionado para a página de pagamento')
 def step_impl(context):
-    
-    assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below to "
-                                 "purchase the fligh')]").text == 'Please submit the form below to purchase the fligh'
+    print()
+    assert context.driver.find_element(By.XPATH,
+    "//p[contains(text(),'Please submit the form below to purchase the fligh')]").text == 'Please submit the form below to purchase the fligh'
     print('Passo 7 - Direcionou para a página de pagamento')
     time.sleep(1)
 
@@ -98,6 +103,7 @@ def step_impl(context):
 
 @then(u'sou direcionado para a página de confirmação')
 def step_impl(context):
+    print()
     
     assert context.driver.find_element(By.TAG_NAME, 'h1').text == 'Thank you for your purchase today!'
     print('Passo 10 - Direcionou para a página de confirmação')
