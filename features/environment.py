@@ -17,3 +17,7 @@ def after_all(context):       # Depois de tudo
     context.driver.quit()
 
     print('Passo Z - Depois de Tudo')
+
+# Bloco executado ao final de cada step
+def after_step(context, step):
+    print()
