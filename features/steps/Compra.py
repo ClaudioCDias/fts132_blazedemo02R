@@ -74,10 +74,10 @@ def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-small').click()
     print('Passo 6 - Selecionou o primeiro vôo')
     time.sleep(1)
-
+'''
 @then(u'sou direcionado para a página de pagamento')
 def step_impl(context):
-    '''
+    
     assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below to "
                                  "purchase the fligh')]").text() == 'Please submit the form below to purchase the fligh'
     print('Passo 7 - Direcionou para a página de pagamento')
@@ -94,10 +94,10 @@ def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
     print('Passo 9 - Clicou no botão Purchase Flight')
     time.sleep(1)
-
+'''
 @then(u'sou direcionado para a página de confirmação')
 def step_impl(context):
-    '''
+    
     assert context.driver.find_element(By.TAG_NAME, 'h1').text() == 'Thank you for your purchase today!'
     print('Passo 10 - Direcionou para a página de confirmação')
     time.sleep(1)
