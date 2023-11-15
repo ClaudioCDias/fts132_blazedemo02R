@@ -15,6 +15,7 @@ def before_feature(context, feature):
         )
 
 @given(u'que acesso o site Blazedemo')
+@given(u'que acesso o portal Blazedemo')
 def step_impl(context):
     context.driver.get('https://blazedemo.com/')
     print('Passo 1 - Acessou o site Blazedemo')
@@ -64,7 +65,7 @@ def step_impl(context):
     # - Sincronismo
     # - Programação Exótica
 
-    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text() == 'Flights from São Paolo to Rome: '
+    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text == 'Flights from São Paolo to Rome: '
     # assert context.driver.find_element(By.TAG_NAME, 'h3').text() == 'Flights from São Paolo to Rome: '
     print('Passo 5 - Direcionou para a página de seleção de vôos')
     time.sleep(1)
@@ -74,15 +75,15 @@ def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-small').click()
     print('Passo 6 - Selecionou o primeiro vôo')
     time.sleep(1)
-'''
+
 @then(u'sou direcionado para a página de pagamento')
 def step_impl(context):
     
     assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below to "
-                                 "purchase the fligh')]").text() == 'Please submit the form below to purchase the fligh'
+                                 "purchase the fligh')]").text == 'Please submit the form below to purchase the fligh'
     print('Passo 7 - Direcionou para a página de pagamento')
     time.sleep(1)
-    '''
+
 @when(u'preencho os dados para pagamento')
 def step_impl(context):
     context.driver.find_element(By.ID, 'inputName').send_keys('James Bond')
@@ -94,14 +95,14 @@ def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
     print('Passo 9 - Clicou no botão Purchase Flight')
     time.sleep(1)
-'''
+
 @then(u'sou direcionado para a página de confirmação')
 def step_impl(context):
     
-    assert context.driver.find_element(By.TAG_NAME, 'h1').text() == 'Thank you for your purchase today!'
+    assert context.driver.find_element(By.TAG_NAME, 'h1').text == 'Thank you for your purchase today!'
     print('Passo 10 - Direcionou para a página de confirmação')
     time.sleep(1)
-    '''
+
 @when(u'seleciono de "{origem}" para "{destino}"')
 def step_impl(context, origem, destino):
 

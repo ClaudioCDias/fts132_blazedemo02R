@@ -23,3 +23,18 @@ Feature: Compra de Passagem Aérea
     When preencho os dados para pagamento
     And clico no botão Purchase Flight
     Then sou direcionado para a página de confirmação
+
+  Scenario Outline: De origem a destino
+    Given que acesso o portal Blazedemo
+    When seleciono de "<origem>" para "<destino>"
+    Then sou direcionado para a página de seleção de vôos
+    When seleciono o primeiro vôo
+    Then sou direcionado para a página de pagamento
+    When preencho os dados para pagamento
+    And clico no botão Purchase Flight
+    Then sou direcionado para a página de confirmação
+
+    Examples:
+      | origem       | destino      |
+      | Philadelphia | Buenos Aires |
+      | Mexico City  | Cairo        |
