@@ -8,6 +8,9 @@ def before_all(context):      # Antes de tudo
     # Maximizar a janela do navegador
     context.driver.maximize_window()
 
+    # Define uma espera máxima para todos os elementos do script
+    context.driver.implicitly_wait(30)
+
     print('Passo A - Antes de Tudo')
 
 # Fim

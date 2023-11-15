@@ -34,56 +34,97 @@ def step_impl(context, origem):
     # objeto_origem.select_by_value(origem)
 
     print('Passo 2 - Selecionou a cidade de origem')
+    time.sleep(1)
 
 @when(u'seleciono a cidade de destino como "{destino}"')
 def step_impl(context, destino):
+
     # Mapeia o combo com as cidades de destino
-    combo_origem = context.driver.find_element(By.NAME, 'toPort')
+    combo_destino = context.driver.find_element(By.NAME, 'toPort')
+
+    # Criar um objeto para permitir selecionar as opções do combo
+    objeto_destino = Select(combo_destino)
+
+    # Seleciona o elemento no combo
+    objeto_destino.select_by_visible_text(destino)
+
+    print('Passo 3 - Selecionou a cidade de destino')
+    time.sleep(1)
+
+@when(u'clico em Find Flights')
+def step_impl(context):
+    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
+    print('Passo 4 - Clicou no botão Find Flights')
+    time.sleep(1)
+
+@then(u'sou direcionado para a página de seleção de vôos')
+def step_impl(context):
+    # 3 Principais motivos para um scritp de automação não funcionar:
+    # - Seletores ou Identificadores
+    # - Sincronismo
+    # - Programação Exótica
+
+    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text() == 'Flights from São Paolo to Rome: '
+    # assert context.driver.find_element(By.TAG_NAME, 'h3').text() == 'Flights from São Paolo to Rome: '
+    print('Passo 5 - Direcionou para a página de seleção de vôos')
+    time.sleep(1)
+
+@when(u'seleciono o primeiro vôo')
+def step_impl(context):
+    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-small').click()
+    print('Passo 6 - Selecionou o primeiro vôo')
+    time.sleep(1)
+
+@then(u'sou direcionado para a página de pagamento')
+def step_impl(context):
+    '''
+    assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below to "
+                                 "purchase the fligh')]").text() == 'Please submit the form below to purchase the fligh'
+    print('Passo 7 - Direcionou para a página de pagamento')
+    time.sleep(1)
+    '''
+@when(u'preencho os dados para pagamento')
+def step_impl(context):
+    context.driver.find_element(By.ID, 'inputName').send_keys('James Bond')
+    print('Passo 8 - Preencheu os dados para o pagamento')
+    time.sleep(1)
+
+@when(u'clico no botão Purchase Flight')
+def step_impl(context):
+    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
+    print('Passo 9 - Clicou no botão Purchase Flight')
+    time.sleep(1)
+
+@then(u'sou direcionado para a página de confirmação')
+def step_impl(context):
+    '''
+    assert context.driver.find_element(By.TAG_NAME, 'h1').text() == 'Thank you for your purchase today!'
+    print('Passo 10 - Direcionou para a página de confirmação')
+    time.sleep(1)
+    '''
+@when(u'seleciono de "{origem}" para "{destino}"')
+def step_impl(context, origem, destino):
+
+    # Mapeia o combo com as cidades de origem
+    combo_origem = context.driver.find_element(By.NAME, 'fromPort')
 
     # Criar um objeto para permitir selecionar as opções do combo
     objeto_origem = Select(combo_origem)
 
     # Seleciona o elemento no combo
-    objeto_origem.select_by_visible_text(destino)
+    objeto_origem.select_by_visible_text(origem)
+    # objeto_origem.select_by_value(origem)
 
-    print('Passo 3 - Selecionou a cidade de destino')
+    # Mapeia o combo com as cidades de destino
+    combo_destino = context.driver.find_element(By.NAME, 'toPort')
 
-@when(u'clico em Find Flights')
-def step_impl(context):
+    # Criar um objeto para permitir selecionar as opções do combo
+    objeto_destino = Select(combo_destino)
 
-    print('Passo 4 - Clicou no botão Find Flights')
+    # Seleciona o elemento no combo
+    objeto_destino.select_by_visible_text(destino)
 
-@then(u'sou direcionado para a página de seleção de vôos')
-def step_impl(context):
-
-    print('Passo 5 - Direcionou para a página de seleção de vôos')
-
-@when(u'seleciono o primeiro vôo')
-def step_impl(context):
-
-    print('Passo 6 - Selecionou o primeiro vôo')
-
-@then(u'sou direcionado para a página de pagamento')
-def step_impl(context):
-
-    print('Passo 7 - Direcionou para a página de pagamento')
-
-@when(u'preencho os dados para pagamento')
-def step_impl(context):
-
-    print('Passo 8 - Preencheu os dados para o pagamento')
-
-@when(u'clico no botão Purchase Flight')
-def step_impl(context):
-
-    print('Passo 9 - Clicou no botão Purchase Flight')
-
-@then(u'sou direcionado para a página de confirmação')
-def step_impl(context):
-
-    print('Passo 10 - Direcionou para a página de confirmação')
-
-@when(u'seleciono de "São Paolo" para "Rome"')
-def step_impl(context):
+    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
 
     print('Passo 2c - Selecionou a cidade de origem e destino')
+    time.sleep(1)
