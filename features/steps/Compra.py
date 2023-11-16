@@ -79,7 +79,7 @@ def step_impl(context, origem, destino):
 def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-small').click()
     print('Passo 6 - Selecionou o primeiro vôo')
-    time.sleep(1)
+    time.sleep(3)
 
 @then(u'sou direcionado para a página de pagamento')
 def step_impl(context):
