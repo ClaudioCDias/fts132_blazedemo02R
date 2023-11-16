@@ -69,8 +69,8 @@ def step_impl(context, origem, destino):
     # assert context.driver.find_element(By.TAG_NAME, 'h3').text == 'Flights from São Paolo to Rome: '
 
     re = f'Flights from {origem} to {destino}:'
-    print('texto é ' + context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h2[1]').text)
-    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h2[1]').text == re
+    print('texto é ' + context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text)
+    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text == re
 
     print('Passo 5 - Direcionou para a página de seleção de vôos')
     time.sleep(1)
